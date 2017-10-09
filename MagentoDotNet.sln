@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagentoDotNet", "MagentoDotNet\MagentoDotNet.csproj", "{AA495BF1-9902-44E0-8DD4-BCA90458B0FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA495BF1-9902-44E0-8DD4-BCA90458B0FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA495BF1-9902-44E0-8DD4-BCA90458B0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA495BF1-9902-44E0-8DD4-BCA90458B0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA495BF1-9902-44E0-8DD4-BCA90458B0FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5C93CFC-0035-45D5-B488-9CE0A32FBEC1}
+	EndGlobalSection
+EndGlobal
