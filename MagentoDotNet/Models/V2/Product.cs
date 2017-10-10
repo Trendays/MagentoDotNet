@@ -11,6 +11,7 @@ namespace MagentoDotNet.Models.V2
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public string SKU { get; set; }
 
         public List<CustomAttribute> CustomAttributes { get; set; }
     }

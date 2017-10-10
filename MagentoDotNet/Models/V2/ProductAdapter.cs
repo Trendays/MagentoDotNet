@@ -14,6 +14,7 @@ namespace MagentoDotNet.Models.V2
         public int Id { get => p.Id; set => p.Id = value; }
         public string Name { get => p.Name; set => p.Name = value; }
         public decimal Price { get => p.Price; set => p.Price = value; }
+        public string SKU { get => p.SKU; set => p.SKU = value; }
 
         public string Description
         {
@@ -40,5 +41,7 @@ namespace MagentoDotNet.Models.V2
                 }
             }
         }
+        
+        public List<string> Tags { get; set; } = new List<string>(); // Tags are not supported in V2 http://tinyurl.com/ybfzfnja
     }
 }
