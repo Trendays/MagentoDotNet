@@ -46,14 +46,18 @@
     <Compile Include="Core\BaseMagentoClient.cs" />
     <Compile Include="Core\IMagentoClient.cs" />
     <Compile Include="Core\MagentoClientV2.cs" />
-    <Compile Include="Models\MagentoConfig.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductResponse.cs" />
+    <Compile Include="Models\IProduct.cs" />
+    <Compile Include="Models\V2\CustomAttribute.cs" />
+    <Compile Include="Core\MagentoClientConfig.cs" />
+    <Compile Include="Models\V2\Product.cs" />
+    <Compile Include="Models\V2\ProductAdapter.cs" />
+    <Compile Include="Models\V2\ProductResponse.cs" />
     <Compile Include="Models\QueryFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

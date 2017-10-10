@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagentoDotNet.Models
+namespace MagentoDotNet.Models.V2
 {
     internal class ProductResponse
     {

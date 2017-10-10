@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagentoDotNet.Models
+namespace MagentoDotNet.Core
 {
-    public class MagentoConfig
+    public class MagentoClientConfig
     {
         public bool UseRewritedUrlFormat { get; set; } = true;
         public bool ContentTypeHeaderWithUnderscore { get; set; }

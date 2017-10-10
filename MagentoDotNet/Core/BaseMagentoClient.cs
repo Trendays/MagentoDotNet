@@ -1,5 +1,6 @@
 ﻿using MagentoDotNet.Models;
 using RestSharp;
+using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,34 +11,32 @@ namespace MagentoDotNet.Core
 {
     public abstract class BaseMagentoClient : IMagentoClient
     {
-        private MagentoConfig Config { get; set; }
+        private MagentoClientConfig Config { get; set; }
         protected RestClient RestClient { get; private set; }
 
-        public BaseMagentoClient(MagentoConfig config)
+        public BaseMagentoClient(MagentoClientConfig config)
         {
             Config = config;
 
             RestClient = new RestClient(Config.BaseUrl + (Config.UseRewritedUrlFormat ? "/api/rest/" : "/index.php/rest/default/V1/"));
             RestClient.AddDefaultHeader(Config.ContentTypeHeaderWithUnderscore ? "Content_Type" : "Content-Type", "application/json");
+            RestClient.Authenticator = OAuth1Authenticator.ForProtectedResource(
+                        Config.ConsumerKey,
+                        Config.ConsumerSecret,
+                        Config.AccessToken,
+                        Config.AccessTokenSecret);
         }
-
-        protected async Task<T> ExecuteQuery<T>(string endpoint, Method method)
+        
+        protected async Task<T> ExecuteQuery<T>(RestRequest request)
         {
-            var request = new RestRequest
-            {
-                Resource = endpoint,
-                Method = method,
-                RequestFormat = DataFormat.Json,
-            };
-
             var response = await RestClient.ExecuteTaskAsync<T>(request);
 
-            if(response.ErrorException != null)
+            if (response.ErrorException != null)
             {
                 throw new Exception("Request failed", response.ErrorException);
             }
 
-            if(response.StatusCode != System.Net.HttpStatusCode.OK)
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 throw new Exception("Request failed with status code : " + (int)response.StatusCode);
             }
@@ -45,7 +44,7 @@ namespace MagentoDotNet.Core
             return response.Data;
         }
 
-        public abstract Task<List<Product>> GetProducts(QueryFilter filter);
-        public abstract Task<Product> GetProductById(int id);
+        public abstract Task<List<IProduct>> GetProducts(QueryFilter filter);
+        public abstract Task<IProduct> GetProductById(int id);
     }
 }

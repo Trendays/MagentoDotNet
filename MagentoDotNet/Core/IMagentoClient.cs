@@ -9,7 +9,7 @@ namespace MagentoDotNet.Core
 {
     public interface IMagentoClient
     {
-        Task<List<Product>> GetProducts(QueryFilter filter);
-        Task<Product> GetProductById(int id);
+        Task<List<IProduct>> GetProducts(QueryFilter filter);
+        Task<IProduct> GetProductById(int id);
     }
 }

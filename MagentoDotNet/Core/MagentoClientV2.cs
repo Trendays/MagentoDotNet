@@ -1,4 +1,6 @@
 ﻿using MagentoDotNet.Models;
+using MagentoDotNet.Models.V2;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +11,30 @@ namespace MagentoDotNet.Core
 {
     public class MagentoClientV2 : BaseMagentoClient
     {
-        public MagentoClientV2(MagentoConfig config) : base(config) { }
+        public MagentoClientV2(MagentoClientConfig config) : base(config) { }
 
-        public async override Task<List<Product>> GetProducts(QueryFilter filter = null)
+        private RestRequest CreateListRequest(string endpoint, QueryFilter filter = null)
         {
-            var response = await ExecuteQuery<ProductResponse>("products", RestSharp.Method.GET);
-            return response.Items;
+            RestRequest request = new RestRequest
+            {
+                Resource = endpoint,
+                Method = Method.GET,
+                RequestFormat = DataFormat.Json,
+            };
+
+            request.AddParameter("searchCriteria", "");
+
+            return request;
         }
 
-        public async override Task<Product> GetProductById(int id)
+        public async override Task<List<IProduct>> GetProducts(QueryFilter filter = null)
+        {
+            var request = CreateListRequest("products", filter);
+            var response = await ExecuteQuery<ProductResponse>(request);
+            return response.Items.Select(x => new ProductAdapter(x) as IProduct).ToList();
+        }
+
+        public async override Task<IProduct> GetProductById(int id)
         {
             throw new NotImplementedException();
         }
